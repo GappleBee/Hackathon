@@ -71,7 +71,7 @@ function LoginModal() {
         <span className="text-[14px] font-[400] leading-[24px] font-poppins text-[#F34735]">{ errors.password && (<span className='ml-4'>{ errors.password.message }</span>) }</span>
       </div>
       <div className="bg-[#E2F266] h-[56px] flex justify-center items-center gap-[10px] self-stretch rounded-[8px]">
-        <button className="font-poppins" type="submit">Log In</button>
+        <button className="font-poppins w-full h-full hover:bg-[#CFDD63] rounded-[8px]" type="submit">Log In</button>
       </div>
       <div className="w-[414px] h-6 relative ">
         <div className="left-[255px] hover:cursor-pointer top-0 absolute text-right text-[#148ee6] text-sm font-normal font-['Poppins'] leading-normal">Forgot Your Password?</div>
