@@ -12,15 +12,6 @@ function LoginModal() {
 
   const loginValidate = {
     required: "Please enter an email address or username",
-    validate: (value: string) => {
-      if (!value.toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      )) {
-        return "Please enter a valid email"
-      }
-      return true
-    }
   }
 
   const passwordValidate = {
@@ -51,8 +42,6 @@ function LoginModal() {
 
   return (
     <form onSubmit={handleSubmit(onLogin)} className="relative flex flex-col rounded-[8px] items-center p-[60px] gap-[24px] self-stretch border-solid w-[535px] h-auto bg-white">
-      {/* leading-trim and text-edge not supported for browsers other than safari*/}
-      {/* width:295 -> width:300 */}
       <div className="w-[300px] text-center">
         <h1 className="text-[#212426] text-[36px] not-italic font-[600] leading-[52px] font-poppins">Welcome Back!</h1>
         <span className="text-[#212426] text-[18px] not-italic font-[400] leading-[22px] font-poppins">We are so glad to see you again!</span>
@@ -79,7 +68,6 @@ function LoginModal() {
         <div className="left-[148px] hover:cursor-pointer top-0 absolute text-right text-[#148ee6] text-sm font-normal font-['Poppins'] leading-normal">Sign Up</div>
       </div>
     </form>
-    
   )
 }
 
