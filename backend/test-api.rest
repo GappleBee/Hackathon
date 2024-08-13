@@ -1,0 +1,30 @@
+# IMPORTANT: You must have the REST client extension installed to send these requests
+# Note: You can replace any credentials here with anything else
+
+# Register a new user
+POST http://127.0.0.1:8000/api/register
+Content-Type: application/json
+
+{
+    "username": "TestBee",
+    "email": "TestBee@example.com",
+    "password": "TestPassword"
+}
+
+###
+
+# Login with the registered user
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+    "username": "TestBee",
+    "password": "TestPassword"
+}
+
+###
+
+# Logout the user
+# Note: Replace the token with the one received from the login response
+POST http://127.0.0.1:8000/api/logout
+Authorization: Token INSERT_TOKEN_HERE
