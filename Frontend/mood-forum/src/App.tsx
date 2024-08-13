@@ -1,15 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import LoginModal from './component/login/LoginModal'
 
 function App() {
-
   return (
-    <>
-      <p className="text-green-500">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='bg-[#D9D9D9] h-screen w-screen'>
+      <LoginModal />
+    </div>
   )
 }
 
