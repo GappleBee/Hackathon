@@ -28,3 +28,38 @@ Content-Type: application/json
 # Note: Replace the token with the one received from the login response
 POST http://127.0.0.1:8000/api/logout
 Authorization: Token INSERT_TOKEN_HERE
+
+###
+
+# Get all posts in reverse chronological order
+GET http://127.0.0.1:8000/api/posts
+
+###
+
+# Add a post
+# Note: Replace the token with the one received from the login response
+POST http://127.0.0.1:8000/api/posts
+Content-Type: application/json
+Authorization: Token INSERT_TOKEN_HERE
+
+{
+    "title": "Post 1",
+    "contents": "This is Post 1's contents"
+}
+
+###
+
+# Get a singular post#
+GET http://127.0.0.1:8000/api/posts/1
+
+###
+
+# Add a comment to a post
+# Note: Replace the token with the one received from the login response
+POST http://127.0.0.1:8000/api/posts/1
+Content-Type: application/json
+Authorization: Token INSERT_TOKEN_HERE
+
+{
+    "contents": "This is a comment"
+}
