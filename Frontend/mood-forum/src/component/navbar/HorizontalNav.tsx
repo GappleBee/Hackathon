@@ -1,13 +1,15 @@
-import logo from "../../assets/logo.svg"
 import search from "../../assets/search.svg"
 import bell from "../../assets/bell.svg"
+import VerticalNav from "./VerticalNav"
+
 
 function HorizontalNav() {
+
+
   return (
-    <div className="h-[80px] flex w-full">
-      <div className="h-[80px] w-[80px] p-[15px] mr-[30px]">
-        <img className="mr-[30px] w-[80px]" src={logo} alt="" />
-      </div>
+    <div className="h-[80px] flex w-full mb-[30px]">
+      
+      <VerticalNav />
       
       <div className="w-full h-[80px] flex items-center justify-between">
         <div className="border-[1px] pl-[10px] border-[#828282] w-[400px] h-[52px] rounded-[30px] flex items-center">
