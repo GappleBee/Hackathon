@@ -15,7 +15,7 @@ If you are on Windows, install Python then go into the same directory as the man
 
 If that didn't work then you need to add Python to your system's PATH environment variables and then try running the command again
 
-If you are on Mac or Linux then you don't need to worry as Python is installed and added to the environment variables by default
+If you are on Mac or Linux then you don't need to worry as Python is installed and added to the environment variables by default so you can just run the same commands without having to worry about setting up Python
 
 # How to boot up the backend server
 
