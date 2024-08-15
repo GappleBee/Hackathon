@@ -5,7 +5,8 @@ To run the whole website (including the API), you need to boot up **two** server
 
 # How to create the database
 
-The database isn't created for you when you boot up the server for the first time but is still essential for basically everything this API does.
+The database isn't created for you when you boot up the server for the first time but is still essential for basically everything this API does
+
 If you are on Windows, install Python then go into the same directory as the manage.py file and run the following commands in order:
 
 `python manage.py makemigrations`
@@ -13,6 +14,8 @@ If you are on Windows, install Python then go into the same directory as the man
 `python manage.py migrate`
 
 If that didn't work then you need to add Python to your system's PATH environment variables and then try running the command again
+
+If you are on Mac or Linux then you don't need to worry as Python is installed and added to the environment variables by default
 
 # How to boot up the backend server
 
