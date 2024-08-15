@@ -1,6 +1,7 @@
 # Important
 
-To run the whole website (including the API), you need to boot up **two** servers: the server for the frontend and the one for the backend (the API)
+To run the whole website (including the API), you need to boot up **two** servers: the server for the frontend and the one for the backend (the API).
+**Before sending requests to the backend server, ensure you have the backend server up and running first**
 
 # How to boot up the backend server?
 
@@ -16,9 +17,6 @@ Django version 5.0.7, using settings 'backend.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
-
-# IMPORTANT
-**Before sending requests to the backend server, ensure you have the backend server up and running first**
 
 # How do I send requests from frontend?
 
