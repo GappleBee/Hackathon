@@ -40,7 +40,7 @@ Authorization: Token INSERT_TOKEN_HERE
 # Gets 100 (given by the query page_size=100) posts in reverse chronological order that are the 3rd most recent posts (given by the query page=3)
 # You separate these queries with an ampersand symbol (&)
 # Note: You can add tone=insertEmotionHere to get all the posts that are also of tone "insertEmotionHere"
-GET http://127.0.0.1:8000/api/posts?page=3&page_size=100
+GET http://127.0.0.1:8000/api/posts?page=1&page_size=100
 
 ###
 
@@ -52,7 +52,8 @@ Authorization: Token INSERT_TOKEN_HERE
 
 {
     "title": "Post 1",
-    "contents": "This is Post 1's contents"
+    "contents": "This is Post 1's contents",
+    "tone": "happy" 
 }
 
 ###

@@ -37,7 +37,7 @@ class CommentSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         poster = self.context.get('poster')
         post = self.context.get('post')
-        return Post.objects.create(poster=poster, post=post, **validated_data)
+        return Comment.objects.create(poster=poster, post=post, **validated_data)
 
 
 class PostCommentSerializer(serializers.ModelSerializer):

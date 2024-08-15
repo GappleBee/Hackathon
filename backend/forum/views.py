@@ -17,10 +17,6 @@ from django.db.models import Q
 
 from .models import User, Post
 from .serializers import UserSerializer, SimpleUserSerializer, PostSerializer, PostCommentSerializer, CommentSerializer
-from .utils import get_tone
-
-
-tones = {'happy', 'sad', 'angry', 'calm', 'excited', 'nostalgic', 'anxious', 'optimistic', 'confused', 'peaceful'}
 
 
 class CustomPagination(PageNumberPagination):
@@ -66,7 +62,7 @@ def register(request):
     return Response({"token": token.key, "user": SimpleUserSerializer(user).data})
 
 
-class Posts(APIView):
+class PostsView(APIView):
     def get(self, request):
         tone = request.GET.get("tone")
         if tone:
@@ -89,14 +85,12 @@ class Posts(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        new_post = serializer.save()
-        new_post.tone = get_tone(new_post, tones)
-        new_post.save()
+        serializer.save()
 
-        return Response({"detail": "Successfully added post to forum", 'modified_post': PostSerializer(new_post).data})
+        return Response({"detail": "Successfully added post to forum", 'modified_post': serializer.data})
 
 
-class Post(APIView):
+class PostView(APIView):
     def get(self, request, post_id):
         single_post = get_object_or_404(Post, id=post_id)
         return Response(PostCommentSerializer(single_post).data)
@@ -110,9 +104,6 @@ class Post(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        serializer.save(post=single_post, poster=request.user)
-
-        single_post.tone = get_tone(single_post, tones)
-        single_post.save()
+        serializer.save()
 
         return Response({"detail": "Successfully added comment to post", 'modified_post': PostCommentSerializer(single_post).data})
