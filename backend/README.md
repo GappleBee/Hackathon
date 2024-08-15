@@ -1,7 +1,7 @@
 # Important
 
 To run the whole website (including the API), you need to boot up **two** servers: the server for the frontend and the one for the backend (the API).
-**Before sending requests to the backend server, ensure you have created the database and ensure that the backend server is running**
+**Before sending requests to the backend server, ensure you have created the database and ensure that the backend server is running. Furthermore, ensure you have added your Gemini AI API key to your environment variables**
 
 # How to create the database
 
