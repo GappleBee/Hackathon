@@ -24,4 +24,4 @@ Normally, if you try send a POST request to `/api/register` with some data it wo
 
 # How do I test the API with whatever requests I want?
 
-To do this, go into the test-api.rest and follow the instructions there, there are also some requests already made for you to send to the server
+To do this, go into the test-api.rest file and follow the instructions there, there are also some requests already made for you to send to the server
