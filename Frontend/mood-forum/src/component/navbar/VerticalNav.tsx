@@ -1,20 +1,22 @@
-import { useState } from "react"
+import {  useState } from "react"
 import logo from "../../assets/logo.svg"
+import { usePushContent } from "../../context/context"
+
 function VerticalNav() {
-  const [VerticalBarHeight, setVerticalBarHeight] = useState("80px")
-  const [VerticalBarBG, setVerticalBarBG] = useState("bg-white")
+  const [VerticalBar, setVerticalBar] = useState(false)
+  const { setPush } = usePushContent()
+
   return (
-    <div className={`transition-[height,hover] ease-linear ${VerticalBarBG} delay-75 h-[${VerticalBarHeight}] w-[80px] p-[15px] mr-[30px] hover:bg-[#828282] border-2 border-red-400`}>
-        <img className="mr-[30px] w-[80px] hover:cursor-pointer" src={logo} onClick={() => {
-          console.log(VerticalBarHeight)
-          if (VerticalBarHeight === "80px") {
-            setVerticalBarHeight("900px")
-            setVerticalBarBG("bg-[#828282]")
-          } else {
-            setVerticalBarHeight("80px")
-            setVerticalBarBG("bg-white")
-          }
-        }} />
+    <div className={`transition-[height,hover] ease-linear ${VerticalBar ? "bg-white" : "bg-[#828282]"} relative z-10 hover:cursor-pointer delay-75 ${!VerticalBar ? "h-[80px]" : "h-[calc(100vh-64px)]"} w-[80px] p-[15px] mr-[30px] hover:bg-[#828282]`} onClick={() => {
+      if (VerticalBar) {
+        setVerticalBar(false)
+        setPush(false)
+      } else {
+        setVerticalBar(true)
+        setPush(true)
+      }
+    }} >
+        <img className="mr-[30px] w-[80px]" src={logo} />
     </div>
   )
 }
