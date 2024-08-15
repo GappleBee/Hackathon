@@ -28,7 +28,7 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-# How to requests from frontend
+# How to send requests from frontend
 
 Normally, if you try to send a POST request to `/api/register` with some data it won't work, under the hood, it needs to send data to your backend server which is usually hosted on your system along with the route as `http://127.0.0.1:8000/api/register`. What you can do instead is set up a proxy to `http://127.0.0.1:8000` so it redirects unrecognised routes like `/api/register` to `http://127.0.0.1:8000/api/register`
 
