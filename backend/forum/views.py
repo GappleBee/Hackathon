@@ -20,7 +20,7 @@ from .serializers import UserSerializer, SimpleUserSerializer, PostSerializer, P
 from .utils import get_tone
 
 
-tones = () # UPDATE THIS
+tones = {'happy', 'sad', 'angry', 'calm', 'excited', 'nostalgic', 'anxious', 'optimistic', 'confused', 'peaceful'}
 
 
 class CustomPagination(PageNumberPagination):
@@ -85,7 +85,7 @@ class Posts(APIView):
     @authentication_classes([TokenAuthentication])
     @permission_classes([IsAuthenticated])
     def post(self, request):
-        serializer = PostSerializer(data=request.data)
+        serializer = PostSerializer(data=request.data, context={'poster': request.user})
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -106,11 +106,7 @@ class Post(APIView):
     def post(self, request, post_id):
         single_post = get_object_or_404(Post, id=post_id)
 
-        comment_data = {
-            'contents': request.data.get('content')
-        }
-
-        serializer = CommentSerializer(data=comment_data, partial=True)
+        serializer = CommentSerializer(data=request.data, context={'poster': request.user, 'post': single_post})
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         

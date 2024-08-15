@@ -1,5 +1,11 @@
 # IMPORTANT: You must have the REST client extension installed to send these requests
-# Note: You can replace any credentials here with anything else
+# If you have the REST client extension installed then to send these requests, you simply just click "Send Request"
+
+# Note: For all the requests that contain the Authorization header, users who haven't signed in can't access them
+# The token must be provided in that specific format: Authorization: Token INSERT_TOKEN_HERE
+# DO NOT remove or add any spaces to this
+
+# This will give you an idea of exactly what to send to each route, and you will also get to see what the response is from each route
 
 # Register a new user
 POST http://127.0.0.1:8000/api/register
@@ -25,19 +31,21 @@ Content-Type: application/json
 ###
 
 # Logout the user
-# Note: Replace the token with the one received from the login response
+# Note: Replace the token with the one received from the login or register response
 POST http://127.0.0.1:8000/api/logout
 Authorization: Token INSERT_TOKEN_HERE
 
 ###
 
-# Get all posts in reverse chronological order
-GET http://127.0.0.1:8000/api/posts
+# Gets 100 (given by the query page_size=100) posts in reverse chronological order that are the 3rd most recent posts (given by the query page=3)
+# You separate these queries with an ampersand symbol (&)
+# Note: You can add tone=insertEmotionHere to get all the posts that are also of tone "insertEmotionHere"
+GET http://127.0.0.1:8000/api/posts?page=3&page_size=100
 
 ###
 
 # Add a post
-# Note: Replace the token with the one received from the login response
+# Note: Replace the token with the one received from the login or register response
 POST http://127.0.0.1:8000/api/posts
 Content-Type: application/json
 Authorization: Token INSERT_TOKEN_HERE
@@ -49,13 +57,13 @@ Authorization: Token INSERT_TOKEN_HERE
 
 ###
 
-# Get a singular post#
+# Get a singular post
 GET http://127.0.0.1:8000/api/posts/1
 
 ###
 
 # Add a comment to a post
-# Note: Replace the token with the one received from the login response
+# Note: Replace the token with the one received from the login or register response
 POST http://127.0.0.1:8000/api/posts/1
 Content-Type: application/json
 Authorization: Token INSERT_TOKEN_HERE

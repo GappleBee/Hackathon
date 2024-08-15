@@ -23,4 +23,6 @@ def get_tone(post, tones):
     prompt += 'After looking at the entire discussion and available tones to choose from, what would you say is the tone of the discussion?'
 
     tone = model.generate_content(prompt)
+    while tone.text not in tones:
+        tone = model.generate_content(prompt)
     return tone.text
