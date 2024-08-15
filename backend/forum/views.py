@@ -15,7 +15,7 @@ from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
-from .models import User, Post
+from .models import User, Post, Comment
 from .serializers import UserSerializer, SimpleUserSerializer, PostSerializer, PostCommentSerializer, CommentSerializer
 
 
@@ -92,18 +92,39 @@ class PostsView(APIView):
 
 class PostView(APIView):
     def get(self, request, post_id):
-        single_post = get_object_or_404(Post, id=post_id)
-        return Response(PostCommentSerializer(single_post).data)
+        required_post = get_object_or_404(Post, id=post_id)
+        return Response(PostCommentSerializer(required_post).data)
 
     @authentication_classes([TokenAuthentication])
     @permission_classes([IsAuthenticated])
     def post(self, request, post_id):
-        single_post = get_object_or_404(Post, id=post_id)
+        required_post = get_object_or_404(Post, id=post_id)
 
-        serializer = CommentSerializer(data=request.data, context={'poster': request.user, 'post': single_post})
+        serializer = CommentSerializer(data=request.data, context={'poster': request.user, 'post': required_post})
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         serializer.save()
 
-        return Response({"detail": "Successfully added comment to post", 'modified_post': PostCommentSerializer(single_post).data})
+        return Response({"detail": "Successfully added comment to post", 'modified_post': PostCommentSerializer(required_post).data})
+    
+    @authentication_classes([TokenAuthentication])
+    @permission_classes([IsAuthenticated])
+    def delete(self, request, post_id):
+        required_post = get_object_or_404(Post, id=post_id)
+        if required_post.poster != request.user:
+            return Response({"detail": "Cannot delete other people's posts"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        required_post.delete()
+        return Response({"detail": f"Post ID {post_id} deletion successful"})
+    
+class CommentView(APIView):
+    @authentication_classes([TokenAuthentication])
+    @permission_classes([IsAuthenticated])
+    def delete(self, request, comment_id):
+        comment = get_object_or_404(Comment, id=comment_id)
+        if comment.poster != request.user:
+            return Response({"detail": "Cannot delete other people's comments"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        comment.delete()
+        return Response({"detail": f"Comment ID {comment_id} deletion successful"})

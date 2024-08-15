@@ -58,12 +58,12 @@ Authorization: Token INSERT_TOKEN_HERE
 
 ###
 
-# Get a singular post
+# Get the post with ID 1
 GET http://127.0.0.1:8000/api/posts/1
 
 ###
 
-# Add a comment to a post
+# Add a comment to the post with ID 1
 # Note: Replace the token with the one received from the login or register response
 POST http://127.0.0.1:8000/api/posts/1
 Content-Type: application/json
@@ -72,3 +72,19 @@ Authorization: Token INSERT_TOKEN_HERE
 {
     "contents": "This is a comment"
 }
+
+###
+
+# Delete the post with ID 1
+# Note: Replace the token with the one received from the login or register response
+# The deletion only works when the person deleting the post is also the creator of the post
+DELETE http://127.0.0.1:8000/api/posts/1
+Authorization: Token INSERT_TOKEN_HERE
+
+###
+
+# Delete the comment with ID 1
+# Note: Replace the token with the one received from the login or register response
+# The deletion only works when the person deleting the comment is also the creator of the comment
+DELETE http://127.0.0.1:8000/api/comments/1
+Authorization: Token INSERT_TOKEN_HERE

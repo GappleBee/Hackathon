@@ -8,4 +8,5 @@ urlpatterns = [
     path("logout", views.logout, name="logout"),
     path("posts", views.PostsView.as_view(), name="posts"),
     path("posts/<int:post_id>", views.PostView.as_view(), name="post"),
+    path("comments/<int:comment_id>", views.CommentView.as_view(), name="comments"),
 ]
