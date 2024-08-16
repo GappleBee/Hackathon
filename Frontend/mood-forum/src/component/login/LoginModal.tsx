@@ -1,17 +1,18 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-function LoginModal() {
+function LoginModal({setShowRegister} : {setShowRegister: Dispatch<SetStateAction<boolean>>}) {
 
   const [showPassword, setShowPassword] = useState("password")
 
   type LoginField = {
-    email_username: string,
+    username: string,
     password: string
   }
 
   const loginValidate = {
-    required: "Please enter an email address or username",
+    required: "Please enter a username",
   }
 
   const passwordValidate = {
@@ -26,6 +27,10 @@ function LoginModal() {
 
   const onLogin: SubmitHandler<LoginField> = (data: LoginField) => {
     console.log(data)
+    axios.post(`http://localhost:8000/api/login`, data).then((response) => {
+        sessionStorage.setItem("logged", JSON.stringify(response.data))
+        window.location.reload()
+    })
   }
 
   const basilEye = 
@@ -48,8 +53,8 @@ function LoginModal() {
       </div>
       <div className="w-[415px] flex flex-col justify-between">
         <span className="text-[14px] font-[600] leading-[24px] font-poppins mb-1 ml-4">Email or Username</span><br/>
-        <input {...register("email_username", loginValidate)} className="bg-[#D9D9D9] text-[#575A5C] outline-none w-[415px] h-[56px] rounded-[8px] py-[16px] pl-[19px]" type="text" placeholder="example@yourdomain.com"/>
-        <span className="text-[14px] font-[400] leading-[24px] font-poppins text-[#F34735]">{ errors.email_username && (<span className='ml-4'>{ errors.email_username.message }</span>) }</span>
+        <input {...register("username", loginValidate)} className="bg-[#D9D9D9] text-[#575A5C] outline-none w-[415px] h-[56px] rounded-[8px] py-[16px] pl-[19px]" type="text" placeholder="example@yourdomain.com"/>
+        <span className="text-[14px] font-[400] leading-[24px] font-poppins text-[#F34735]">{ errors.username && (<span className='ml-4'>{ errors.username.message }</span>) }</span>
       </div>
       <div className="w-[415px] flex flex-col justify-between">
         <span className="text-[14px] font-[600] leading-[24px] font-poppins mb-1 ml-4">Password</span><br/>
@@ -65,7 +70,7 @@ function LoginModal() {
       <div className="w-[414px] h-6 relative ">
         <div className="left-[255px] hover:cursor-pointer top-0 absolute text-right text-[#148ee6] text-sm font-normal font-['Poppins'] leading-normal">Forgot Your Password?</div>
         <div className="left-0 top-0 absolute text-right text-[#212426] text-sm font-normal font-['Poppins'] leading-normal">New to Sentimentia? </div>
-        <div className="left-[148px] hover:cursor-pointer top-0 absolute text-right text-[#148ee6] text-sm font-normal font-['Poppins'] leading-normal">Sign Up</div>
+        <div className="left-[148px] hover:cursor-pointer top-0 absolute text-right text-[#148ee6] text-sm font-normal font-['Poppins'] leading-normal" onClick={() => setShowRegister(true)}>Sign Up</div>
       </div>
     </form>
   )

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import axios from 'axios'
 
-function RegisterModal() {
+function RegisterModal({setShowRegister} : {setShowRegister: Dispatch<SetStateAction<boolean>>}) {
     const [showPassword, setShowPassword] = useState("password")
 
     type RegisterField = {
@@ -38,7 +39,10 @@ function RegisterModal() {
     } = useForm<RegisterField>()
   
     const onLogin: SubmitHandler<RegisterField> = (data: RegisterField) => {
-      console.log(data)
+      axios.post(`http://localhost:8000/api/register`, data).then((response) => {
+        sessionStorage.setItem("logged", JSON.stringify(response.data))
+        window.location.reload()
+      })
     }
   
     const basilEye = 
@@ -78,7 +82,7 @@ function RegisterModal() {
           <span className="text-[14px] font-[400] leading-[24px] font-poppins text-[#F34735]">{ errors.password && (<span className='ml-4'>{ errors.password.message }</span>) }</span>
         </div>
         <div className="h-[56px] flex justify-center items-center gap-[10px] self-stretch rounded-[8px]">
-          <button className="font-poppins w-[175px] h-[56px] rounded-[8px] border-2 hover:bg-[#D9D9D9] hover:bg-opacity-25 font-[600]" type="button">Sign In</button>
+          <button className="font-poppins w-[175px] h-[56px] rounded-[8px] border-2 hover:bg-[#D9D9D9] hover:bg-opacity-25 font-[600]" type="button" onClick={() => setShowRegister(false)}>Sign In</button>
           <button className="font-poppins w-[175px] h-[56px] hover:bg-[#CFDD63] bg-[#E2F266] rounded-[8px] font-[600]" type="submit">Continue</button>
         </div>
         <div className="font-poppins font-[400] text-[12px] leading-[16px] text-center w-[248px]">

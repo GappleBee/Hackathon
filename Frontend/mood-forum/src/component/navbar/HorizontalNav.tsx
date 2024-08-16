@@ -1,10 +1,19 @@
 import search from "../../assets/search.svg"
 import bell from "../../assets/bell.svg"
 import VerticalNav from "./VerticalNav"
+import { useEffect, useState } from "react"
+import { userData } from "../posts/Posts"
 
 
 function HorizontalNav() {
-
+  const [initial, setInitial] = useState("")
+  useEffect(() => {
+    let isLogged = sessionStorage.getItem("logged")
+    let data: userData = isLogged ? JSON.parse(isLogged) : null
+    if(data) {
+      setInitial(data.user.username.slice(0, 1))
+    }
+  })
 
   return (
     <div className="h-[80px] flex w-full mb-[30px]">
@@ -26,12 +35,12 @@ function HorizontalNav() {
             </div>
             <span className="w-[114px] font-poppins text-[18px] leading-[24px] font-[500] text-[#828282] mr-[15px]">Notifications</span>
             <div className="h-[30px] w-[30px] rounded-full flex justify-center items-center bg-[#828282]">
-                <span className="text-white">5</span>
+                <span className="text-white">0</span>
             </div>
           </div>
 
           <div className="h-[64px] w-[64px] flex justify-center items-center ml-[30px]">
-            <div className="bg-[#828282] rounded-full h-full w-full"></div>
+            <div className="bg-[#828282] rounded-full h-full w-full flex justify-center align-middle"><span className="text-[40px]">{initial}</span></div>
           </div>
         </div>
       </div>
