@@ -9,16 +9,16 @@ class User(AbstractUser):
 
 class Post(models.Model):
     TONES = [
-        ('happy', 'Happy'),
-        ('sad', 'Sad'),
-        ('angry', 'Angry'),
-        ('calm', 'Calm'),
-        ('excited', 'Excited'),
-        ('nostalgic', 'Nostalgic'),
-        ('anxious', 'Anxious'),
-        ('optimistic', 'Optimistic'),
-        ('confused', 'Confused'),
-        ('peaceful', 'Peaceful'),
+        ('love', 'love'),
+        ('happy', 'happy'),
+        ('ridiculous', 'ridiculous'),
+        ('relaxing', 'relaxing'),
+        ('confident', 'confident'),
+        ('Amazed', 'Amazed'),
+        ('Anxious', 'Anxious'),
+        ('sad', 'sad'),
+        ('angry', 'angry'),
+        ('confused', 'confused'),
     ]
     
     date_posted = models.DateTimeField(auto_now_add=True)
