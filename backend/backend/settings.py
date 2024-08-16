@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Assuming your React app runs on port 3000, change this to wherever your React app is running on
+    "http://localhost:5173",  # Assuming your React app runs on port 3000, change this to wherever your React app is running on
 ]
 
 CORS_ALLOW_CREDENTIALS = False  # Disallows sending cookies cross-origin which increases security, we won't need this for our token authentication as it doesn't use cookies
