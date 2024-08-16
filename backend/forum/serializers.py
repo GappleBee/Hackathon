@@ -28,11 +28,10 @@ class PostSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     poster = SimpleUserSerializer(read_only=True)
-    post = PostSerializer(read_only=True)
 
     class Meta:
         model = Comment
-        fields = ["id", "date_posted", "poster", "contents", "post"]
+        fields = ["id", "date_posted", "poster", "contents"]
 
     def create(self, validated_data):
         poster = self.context.get('poster')
